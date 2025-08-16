@@ -29,7 +29,9 @@ extension ClassElementX on ClassElement {
         collectionAnnotation?.ignore ?? embeddedAnnotation?.ignore ?? {};
     final fields = this.fields;
     final inheritedFields = <PropertyInducingElement>[];
-    if (collectionAnnotation?.inheritance ?? embeddedAnnotation?.inheritance ?? false) {
+    if (collectionAnnotation?.inheritance ??
+        embeddedAnnotation?.inheritance ??
+        false) {
       for (final InterfaceType supertype in allSupertypes) {
         if (!supertype.isDartCoreObject) {
           inheritedFields.addAll(supertype.element.fields);
@@ -123,10 +125,10 @@ extension PropertyElementX on PropertyInducingElement {
 
 extension ElementX on Element {
   String get isarName {
-  // Name annotation is not available, fallback to displayName
-  final name = displayName;
-  checkIsarName(name, this);
-  return name;
+    // Name annotation is not available, fallback to displayName
+    final name = displayName;
+    checkIsarName(name, this);
+    return name;
   }
 
   Collection? get collectionAnnotation {
