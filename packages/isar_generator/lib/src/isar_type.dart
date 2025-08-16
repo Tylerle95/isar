@@ -12,22 +12,22 @@ extension DartTypeX on DartType {
     if (isDartCoreBool) {
       return IsarType.bool;
     } else if (isDartCoreInt) {
-      if (alias?.element2.name3 == 'byte') {
+      if (alias?.element.name == 'byte') {
         return IsarType.byte;
-      } else if (alias?.element2.name3 == 'short') {
+      } else if (alias?.element.name == 'short') {
         return IsarType.int;
       } else {
         return IsarType.long;
       }
     } else if (isDartCoreDouble) {
-      if (alias?.element2.name3 == 'float') {
+      if (alias?.element.name == 'float') {
         return IsarType.float;
       } else {
         return IsarType.double;
       }
     } else if (isDartCoreString) {
       return IsarType.string;
-    } else if (_isDateTime(element!)) {
+    } else if (element != null && _isDateTime(element!)) {
       return IsarType.dateTime;
     } else if (element != null &&
         (element as dynamic)?.embeddedAnnotation != null) {
@@ -38,7 +38,7 @@ extension DartTypeX on DartType {
   }
 
   bool get isIsarId {
-    return alias?.element2.name3 == 'Id';
+    return alias?.element.name == 'Id';
   }
 
   DartType get scalarType {
