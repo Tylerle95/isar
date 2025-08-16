@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   analyzer: ^7.7.0
-  build: ^2.0.0
+  build: ^2.3.0
   dart_style: ^3.1.1
   dartx: ^1.2.0
   glob: ^2.1.3
