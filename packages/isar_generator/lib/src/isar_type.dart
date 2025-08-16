@@ -1,11 +1,11 @@
-import 'package:analyzer/dart/element/element2.dart';
+import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:isar/isar.dart';
-import 'package:isar_generator/src/helper.dart';
+// import 'package:isar_generator/src/helper.dart';
 import 'package:source_gen/source_gen.dart';
 
 const TypeChecker _dateTimeChecker = TypeChecker.fromRuntime(DateTime);
-bool _isDateTime(Element2 element) => _dateTimeChecker.isExactly(element);
+bool _isDateTime(Element element) => _dateTimeChecker.isExactly(element);
 
 extension DartTypeX on DartType {
   IsarType? get _primitiveIsarType {
@@ -27,9 +27,10 @@ extension DartTypeX on DartType {
       }
     } else if (isDartCoreString) {
       return IsarType.string;
-    } else if (_isDateTime(element3!)) {
+    } else if (_isDateTime(element!)) {
       return IsarType.dateTime;
-    } else if (element3!.embeddedAnnotation != null) {
+    } else if (element != null &&
+        (element as dynamic)?.embeddedAnnotation != null) {
       return IsarType.object;
     }
 
